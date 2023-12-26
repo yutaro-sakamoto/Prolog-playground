@@ -20,3 +20,8 @@ grandparent(G, C) :- grandmother(G, C).
 child(C, P) :- parent(P, C).
 grandchild(C, G) :- grandparent(G, C).
 sibling(X, Y) :- parent(P, X), parent(P, Y).
+
+ancestor(A, C) :- parent(A, C).
+ancestor(A, C) :- parent(A, P), ancestor(P, C).
+
+descendant(D, P) :- ancestor(P, D).
