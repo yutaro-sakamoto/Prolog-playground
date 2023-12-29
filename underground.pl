@@ -32,3 +32,6 @@ nearby(X,Y):- connected(X,Y,L), connected(Y,Z,L).
 
 not_too_far(X,Y):- connected(X,Y,L).
 not_too_far(X,Z):- connected(X,Y,L1), connected(Y,Z,L2).
+
+reachable(X,Y):- connected(X,Y,_L).
+reachable(X,Y):- connected(X,Z,L),reachable(Z,Y).
