@@ -33,5 +33,21 @@ nearby(X,Y):- connected(X,Y,L), connected(Y,Z,L).
 not_too_far(X,Y):- connected(X,Y,L).
 not_too_far(X,Z):- connected(X,Y,L1), connected(Y,Z,L2).
 
-reachable(X,Y):- connected(X,Y,_L).
-reachable(X,Y):- connected(X,Z,L),reachable(Z,Y).
+% reachable(X,Y):- connected(X,Y,_L).
+% reachable(X,Y):- connected(X,Z,L),reachable(Z,Y).
+
+reachable(X,Y,noroute):-connected(X,Y,_L).
+reachable(X,Y,route(Z)):-connected(X,Z,_L1),
+                         connected(Z,Y,_L2).
+reachable(X,Y,route(Z1,Z2)):-connected(X,Z1,_L1),
+                             connected(Z1,Z2,_L2),
+                             connected(Z2,Y,_L3).
+
+list([]).
+list([H|T]):- list(T).
+
+even_length_list([]).
+even_length_list([A,B|T]):- even_length_list(T).
+
+odd_length_list([A]).
+odd_length_list([A,B|T]):- odd_length_list(T).
